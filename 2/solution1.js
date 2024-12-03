@@ -27,8 +27,8 @@ function checkSafety(nums, isIncreasing) {
         let one = nums[i];
         let two = nums[i + 1];
         let difference = Math.abs(one - two);
-        if ((isIncreasing === true && one > two) ||
-            (isIncreasing === false && one < two) ||
+        if ((isIncreasing && one > two) ||
+            (!isIncreasing && one < two) ||
             (difference === 0) || (difference >= 4)) {
             return false;
         }
