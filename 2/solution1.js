@@ -7,11 +7,7 @@ fs.readFile('input.txt', (_err, data) => {
     for (let lineIdx = 0; lineIdx < lines.length; lineIdx++) {
         let lineStr = lines[lineIdx];
         let lineNums = lineStr.split(' ').map(Number);
-        if (checkSafety(lineNums, checkIncreasing(lineNums[0], lineNums[1]))) {
-            totalSafeReports++;
-        } else {
-            removeOneLoop(lineNums);
-        }
+        removeOneLoop(lineNums);
     }
     console.log(totalSafeReports);
 });
