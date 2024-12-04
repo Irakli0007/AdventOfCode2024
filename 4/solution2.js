@@ -7,7 +7,7 @@ fs.readFile('input.txt', (_err, data) => {
     for (let j = 0; j < rows.length; j++) {
         for (let i = 0; i < rowLength; i++) {
             if (rows[j].charAt(i) === 'A') {
-                if (CheckMasDiagonal(rows, rowLength, i, j)) {
+                if (checkMasDiagonal(rows, rowLength, i, j)) {
                     total++;
                 }
             }
@@ -16,7 +16,7 @@ fs.readFile('input.txt', (_err, data) => {
     console.log(total);
 });
 
-function CheckMasDiagonal(rows, rowLength, i, j) {
+function checkMasDiagonal(rows, rowLength, i, j) {
     let backSlash = false;
     let forwardSlash = false;
     if (validPosition(i - 1, j - 1, rowLength, rows.length) && (
