@@ -4,10 +4,10 @@ fs.readFile('input.txt', (_err, data) => {
     let total = 0;
     let dataParts = data.toString().split('\n\n');
     let rules = dataParts[0].split('\n');
-    let rulesArray = createSortedRulesArray(rules);
     let updates = dataParts[1].split('\n');
     for (let updateIdx = 0; updateIdx < updates.length; updateIdx++) {
         let update = updates[updateIdx];
+        let rulesArray = createSortedRulesArray(rules, update);
         if (!correctOrder(update, rules)) {
             let middle = parseInt(getMiddleOfFixedUpdate(update, rulesArray));
             total += middle;
@@ -24,30 +24,31 @@ function getMiddleOfFixedUpdate(update, rulesArray) {
             fixedUpdate.push(rulesArray[i]);
         }
     }
-    //console.log(fixedUpdate);
-    //console.log(fixedUpdate.map(Number));
     return fixedUpdate[Math.floor(fixedUpdate.length / 2)];
 }
 
-function createSortedRulesArray(rules) {
+function createSortedRulesArray(rules, update) {
     let rulesMap = new Map();
     let rulesArray = [];
+    let updates = update.split(',');
     for (let i = 0; i < rules.length; i++) {
         let first = rules[i].split('|')[0];
         let second = rules[i].split('|')[1];
-        if (!rulesMap.has(first)) {
-            let list = [second];
-            rulesMap.set(first, list)
-        } else {
-            let list = rulesMap.get(first);
-            list.push(second);
-            rulesMap.set(first, list);
-        }
-        if (!rulesArray.includes(first)) {
-            rulesArray.push(first);
-        }
-        if (!rulesArray.includes(second)) {
-            rulesArray.push(second);
+        if (updates.includes(first) && updates.includes(second)) {
+            if (!rulesMap.has(first)) {
+                let list = [second];
+                rulesMap.set(first, list)
+            } else {
+                let list = rulesMap.get(first);
+                list.push(second);
+                rulesMap.set(first, list);
+            }
+            if (!rulesArray.includes(first)) {
+                rulesArray.push(first);
+            }
+            if (!rulesArray.includes(second)) {
+                rulesArray.push(second);
+            }
         }
     }
     rulesArray.sort((a, b) => {
@@ -58,7 +59,6 @@ function createSortedRulesArray(rules) {
         }
         return 0;
     });
-    //console.log(rulesArray);
     return rulesArray;
 }
 
