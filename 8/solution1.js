@@ -73,12 +73,10 @@ function findAntinodes() {
                     antinodeTwo = new Point(pointTwo.x - xDistance, pointTwo.y + yDistance);
                 }
                 if (isValidLocation(antinodeOne.x, antinodeOne.y)) {
-                    let validAntinode = new Point(antinodeOne.x, antinodeOne.y);
-                    antinodeMap.set(JSON.stringify(validAntinode), true);
+                    antinodeMap.set(JSON.stringify(antinodeOne), true);
                 }
                 if (isValidLocation(antinodeTwo.x, antinodeTwo.y)) {
-                    let validAntinode = new Point(antinodeTwo.x, antinodeTwo.y);
-                    antinodeMap.set(JSON.stringify(validAntinode), true);
+                    antinodeMap.set(JSON.stringify(antinodeTwo), true);
                 }
             }
         }

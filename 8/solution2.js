@@ -91,8 +91,7 @@ function searchDiagonalUp(point, xDistance, yDistance, direction) {
         antinode = new Point(point.x + xDistance, point.y - yDistance);
     }
     if (isValidLocation(antinode.x, antinode.y)) {
-        let validAntinode = new Point(antinode.x, antinode.y);
-        antinodeMap.set(JSON.stringify(validAntinode), true);
+        antinodeMap.set(JSON.stringify(antinode), true);
     } else {
         return;
     }
@@ -107,8 +106,7 @@ function searchDiagonalDown(point, xDistance, yDistance, direction) {
         antinode = new Point(point.x - xDistance, point.y + yDistance);
     }
     if (isValidLocation(antinode.x, antinode.y)) {
-        let validAntinode = new Point(antinode.x, antinode.y);
-        antinodeMap.set(JSON.stringify(validAntinode), true);
+        antinodeMap.set(JSON.stringify(antinode), true);
     } else {
         return;
     }
